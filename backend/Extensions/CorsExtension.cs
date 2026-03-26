@@ -10,13 +10,13 @@ public static class CorsExtension
   {
     services.Configure<CorsOptions>(configuration.GetSection("Cors"));
 
-    var origin = configuration["Cors:Origin"] ?? string.Empty;
+    var origins = configuration.GetSection("Cors:Origins").Get<string[]>() ?? [];
 
     services.AddCors(options =>
     {
       options.AddPolicy(PolicyName, policy =>
         policy
-          .WithOrigins(origin)
+          .WithOrigins(origins)
           .AllowAnyMethod()
           .AllowAnyHeader());
     });

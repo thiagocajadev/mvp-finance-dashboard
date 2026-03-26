@@ -2,5 +2,5 @@ namespace FinanceDashboard.Api.Models.Options;
 
 public class CorsOptions
 {
-  public string Origin { get; init; } = string.Empty;
+  public string[] Origins { get; init; } = [];
 }

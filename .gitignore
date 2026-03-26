@@ -18,6 +18,9 @@ backend/obj/
 # Rider / JetBrains
 .idea/
 
+# Vs COde
+.vscode
+
 # Frontend
 frontend/node_modules/
 frontend/dist/
