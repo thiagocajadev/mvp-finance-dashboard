@@ -22,12 +22,13 @@ Finance Dashboard é um MVP de painel financeiro pessoal desenvolvido como proje
 
 O sistema consolida contas bancárias, histórico de transações e metas financeiras em uma interface única, com API RESTful e frontend reativo.
 
-> Este projeto é um MVP. O foco está em arquitetura limpa e boas práticas, não em volume de funcionalidades.
+> [!IMPORTANT]
+> MVP (_Minimal Viable Product_, ou Produto Mínimo Viável) é a versão mais simples de um produto, contendo apenas o essencial para validar uma ideia. Este projeto segue esse conceito, com foco em arquitetura limpa, boas práticas e qualidade de código, priorizando o essencial em vez do volume de funcionalidades.
 
-| | Link |
-|---|---|
-| Frontend (produção) | [finance.thiagocaja.dev](https://finance.thiagocaja.dev/) |
-| API Backend | [thiagocajadev-mvp-finance-dashboard-api.onrender.com](https://thiagocajadev-mvp-finance-dashboard-api.onrender.com) |
+|                     | Link                                                                                                                 |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| Frontend (produção) | [finance.thiagocaja.dev](https://finance.thiagocaja.dev/)                                                            |
+| API Backend         | [thiagocajadev-mvp-finance-dashboard-api.onrender.com](https://thiagocajadev-mvp-finance-dashboard-api.onrender.com) |
 
 ---
 
@@ -64,33 +65,33 @@ O sistema consolida contas bancárias, histórico de transações e metas financ
 
 ### Conceitos e boas práticas aplicados
 
-| #   | Prática                                                                                  | Onde                                      |
-| --- | ---------------------------------------------------------------------------------------- | ----------------------------------------- |
-| ✅  | **Vertical Slice** — código organizado por feature, não por camada                       | Backend e frontend                        |
-| ✅  | **Handler Pattern** — orquestrador + funções locais nomeadas                             | `Features/*/`                             |
-| ✅  | **Step-Down Narrative** — lê-se de cima pra baixo como uma história                      | Todos os handlers                         |
-| ✅  | **Direct Return** — sem variáveis intermediárias desnecessárias                          | `HandleAsync()`                           |
-| ✅  | **Envelope de resposta unificado** — mesmo shape em sucesso e erro                       | `ApiResponse<T>`                          |
-| ✅  | **Static factory DTO** — `From(entity)` em todos os response records                     | `AccountResponse`, etc.                   |
-| ✅  | **IOptions pattern** — zero string literal para configuração                             | `CorsOptions`                             |
-| ✅  | **Rate Limiting** — 60 req/min por IP, nativo do .NET                                    | `RateLimitExtension`                      |
-| ✅  | **CORS configurável por ambiente** — origin via `appsettings.json`                       | `CorsExtension`                           |
-| ✅  | **Logging estruturado** — nível configurável por ambiente                                | arquivo de configuração                   |
-| ✅  | **UTC centralizado** — `Utc.Now` substitui `DateTime.Now` em todo o código               | `Common/Utc.cs`                           |
-| ✅  | **Nomes expressivos** — variáveis descrevem resultado, não tipo                          | Convenção global                          |
-| ✅  | **OpenAPI interativo** — documentação viva via Scalar                                    | `/scalar`                                 |
-| ✅  | **Health check** — endpoint padrão para orquestração e monitoramento                     | `/health`                                 |
-| ✅  | **Result pattern** — erros como valor, sem exceptions de fluxo; early return no handler  | `Models/Result.cs`, `ApiResults.MapError` |
-| ✅  | **Layered API client** — único ponto Axios; interceptor extrai `.data` e normaliza erros | `src/lib/api/client.ts`                   |
+| #   | Prática                                                                                   | Onde                                      |
+| --- | ----------------------------------------------------------------------------------------- | ----------------------------------------- |
+| ✅  | **Vertical Slice** — código organizado por feature, não por camada                        | Backend e frontend                        |
+| ✅  | **Handler Pattern** — orquestrador + funções locais nomeadas                              | `Features/*/`                             |
+| ✅  | **Step-Down Narrative** — lê-se de cima pra baixo como uma história                       | Todos os handlers                         |
+| ✅  | **Direct Return** — sem variáveis intermediárias desnecessárias                           | `HandleAsync()`                           |
+| ✅  | **Envelope de resposta unificado** — mesmo shape em sucesso e erro                        | `ApiResponse<T>`                          |
+| ✅  | **Static factory DTO** — `From(entity)` em todos os response records                      | `AccountResponse`, etc.                   |
+| ✅  | **IOptions pattern** — zero string literal para configuração                              | `CorsOptions`                             |
+| ✅  | **Rate Limiting** — 60 req/min por IP, nativo do .NET                                     | `RateLimitExtension`                      |
+| ✅  | **CORS configurável por ambiente** — origin via `appsettings.json`                        | `CorsExtension`                           |
+| ✅  | **Logging estruturado** — nível configurável por ambiente                                 | arquivo de configuração                   |
+| ✅  | **UTC centralizado** — `Utc.Now` substitui `DateTime.Now` em todo o código                | `Common/Utc.cs`                           |
+| ✅  | **Nomes expressivos** — variáveis descrevem resultado, não tipo                           | Convenção global                          |
+| ✅  | **OpenAPI interativo** — documentação viva via Scalar                                     | `/scalar`                                 |
+| ✅  | **Health check** — endpoint padrão para orquestração e monitoramento                      | `/health`                                 |
+| ✅  | **Result pattern** — erros como valor, sem exceptions de fluxo; early return no handler   | `Models/Result.cs`, `ApiResults.MapError` |
+| ✅  | **Layered API client** — único ponto Axios; interceptor extrai `.data` e normaliza erros  | `src/lib/api/client.ts`                   |
 | ✅  | **Hook orquestrador** — componente só tem JSX; lógica e fetching vivem no hook            | `features/*/hooks/`                       |
 | ✅  | **TanStack Query** — cache, loading states e invalidação sem `useEffect` + `fetch`        | `features/*/queries/`                     |
 | ✅  | **Zustand com persist** — dark mode persistido no localStorage via middleware             | `app/theme-store.ts`                      |
-| ✅  | **Dark mode** — suporte completo com Tailwind `dark:` e toggle via store                 | `Header`, `AppLayout`                     |
+| ✅  | **Dark mode** — suporte completo com Tailwind `dark:` e toggle via store                  | `Header`, `AppLayout`                     |
 | ✅  | **Typed services** — cada feature expõe seus endpoints tipados, sem Axios nos componentes | `features/*/services/`                    |
 | ✅  | **index.ts por feature** — imports cruzados pelo barrel, nunca por caminho interno        | `features/*/index.ts`                     |
-| 🔜  | **JWT via cookie HttpOnly** — token sem exposição ao JavaScript                          | Planejado                                 |
-| 🔜  | **RBAC** — controle de acesso por papel de usuário                                       | Planejado                                 |
-| 🔜  | **FluentValidation** — validação de request sem DataAnnotations                          | Planejado                                 |
+| 🔜  | **JWT via cookie HttpOnly** — token sem exposição ao JavaScript                           | Planejado                                 |
+| 🔜  | **RBAC** — controle de acesso por papel de usuário                                        | Planejado                                 |
+| 🔜  | **FluentValidation** — validação de request sem DataAnnotations                           | Planejado                                 |
 
 ---
 
@@ -185,14 +186,16 @@ Exemplo real — `useAccounts` ([ver arquivo](frontend/src/features/accounts/hoo
 
 ```ts
 export function useAccounts() {
-  const { data: accountsResponse, isLoading: isLoadingAccounts } = useAccountsQuery()
-  const { data: summaryResponse, isLoading: isLoadingSummary } = useAccountSummaryQuery()
+  const { data: accountsResponse, isLoading: isLoadingAccounts } =
+    useAccountsQuery();
+  const { data: summaryResponse, isLoading: isLoadingSummary } =
+    useAccountSummaryQuery();
 
   return {
     accounts: accountsResponse?.data ?? [],
     summary: summaryResponse?.data ?? null,
     isLoading: isLoadingAccounts || isLoadingSummary,
-  }
+  };
 }
 ```
 
@@ -205,16 +208,16 @@ O hook compõe duas queries independentes e entrega ao componente exatamente o q
 export const useThemeStore = create<ThemeStore>()(
   persist(
     (set, get) => ({
-      theme: 'light',
+      theme: "light",
       toggleTheme: () => {
-        const next = get().theme === 'dark' ? 'light' : 'dark'
-        set({ theme: next })
-        document.documentElement.classList.toggle('dark', next === 'dark')
+        const next = get().theme === "dark" ? "light" : "dark";
+        set({ theme: next });
+        document.documentElement.classList.toggle("dark", next === "dark");
       },
     }),
-    { name: 'finance-theme' },
+    { name: "finance-theme" },
   ),
-)
+);
 ```
 
 A preferência de tema persiste entre sessões via `localStorage`. A classe `dark` é aplicada no `documentElement` — Tailwind `dark:` funciona em toda a árvore sem Context Provider.
@@ -426,11 +429,11 @@ O frontend sobe em `http://localhost:3000`.
 
 ## Status do projeto
 
-| Área                                       | Status                           |
-| ------------------------------------------ | -------------------------------- |
-| Backend — endpoints de leitura             | Funcional (dados em memória)     |
-| Backend — banco de dados                   | Planejado (PostgreSQL + EF Core) |
-| Backend — autenticação JWT                 | Planejado                        |
-| Frontend — dashboard (contas, transações, metas) | Funcional                  |
-| Frontend — dark mode                       | Funcional                        |
-| Deploy — API (Render) + Frontend (Vercel)  | Funcional                        |
+| Área                                             | Status                           |
+| ------------------------------------------------ | -------------------------------- |
+| Backend — endpoints de leitura                   | Funcional (dados em memória)     |
+| Backend — banco de dados                         | Planejado (PostgreSQL + EF Core) |
+| Backend — autenticação JWT                       | Planejado                        |
+| Frontend — dashboard (contas, transações, metas) | Funcional                        |
+| Frontend — dark mode                             | Funcional                        |
+| Deploy — API (Render) + Frontend (Vercel)        | Funcional                        |

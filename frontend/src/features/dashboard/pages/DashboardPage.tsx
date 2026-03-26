@@ -1,8 +1,10 @@
 import { AccountsCard } from '@/features/accounts'
 import { RecentTransactions } from '@/features/transactions'
 import { GoalsCard } from '@/features/goals'
+import { useSlowApiWarning } from '../hooks/use-slow-api-warning'
 
 export default function DashboardPage() {
+  useSlowApiWarning()
   return (
     <div className="space-y-6">
       {/* Top grid: Accounts + Recent Transactions */}
