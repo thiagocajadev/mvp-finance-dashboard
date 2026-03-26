@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/backend/">
+    <Project Path="FinanceDashboard.Api.csproj" />
+  </Folder>
+</Solution>

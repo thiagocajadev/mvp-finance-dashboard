@@ -1,0 +1,48 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{cs,csx}]
+indent_style = space
+indent_size = 2
+tab_width = 2
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
+
+# Alignment — never use extra spaces to align columns
+csharp_align_multiline_calls_chain = false
+csharp_align_multiple_declaration = false
+csharp_align_multiline_parameter = false
+csharp_align_multiline_argument = false
+csharp_align_multiline_array_and_object_initializer = false
+csharp_align_multiline_expression = false
+csharp_align_multiline_for_statement = false
+csharp_align_linq_query = false
+csharp_align_multiline_binary_expressions_chain = false
+csharp_align_multiline_switch_expression = false
+csharp_align_multiline_property_pattern = false
+csharp_align_multiline_list_pattern = false
+csharp_align_multiline_extends_list = false
+csharp_outdent_commas = false
+
+# Braces — Allman style
+csharp_new_line_before_open_brace = all
+csharp_new_line_before_else = true
+csharp_new_line_before_catch = true
+csharp_new_line_before_finally = true
+
+# Indentation
+csharp_indent_labels = one_less_than_current
+csharp_indent_switch_labels = true
+csharp_indent_case_contents = true
+
+# Spacing
+csharp_space_after_cast = false
+csharp_space_after_keywords_in_control_flow_statements = true
+csharp_space_before_colon_in_inheritance_clause = true
+csharp_space_after_colon_in_inheritance_clause = true
+csharp_space_around_binary_operators = before_and_after

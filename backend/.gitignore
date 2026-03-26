@@ -1,0 +1,18 @@
+# Secrets
+.env
+*.env.local
+appsettings.Development.json
+
+# .NET build output
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# Rider / JetBrains
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
