@@ -18,7 +18,7 @@ backend/obj/
 # Rider / JetBrains
 .idea/
 
-# Vs COde
+# Vs Code
 .vscode
 
 # Frontend
